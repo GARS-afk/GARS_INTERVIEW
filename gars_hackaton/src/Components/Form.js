@@ -16,7 +16,10 @@ const Form = () => {
 
     const submitEvent = async () => {
         console.log(dataForm)
-        //Aqui deben de crear el codigo para poder enviar la informacion a la base de datos
+        /*
+            Aqui deben de crear el codigo para poder enviar la informacion a la base de datos haciendo la validación
+            de que ningun campo este vacio
+        */
     }
 
     return(
