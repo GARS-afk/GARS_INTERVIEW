@@ -12,11 +12,15 @@ const Navbar = () => {
                 <ul className="navbar-ul">
                     IBM Cloud
                     <li className="navbar-ul-li">
-                        <IbmCloud32 />
+                        <a href="https://cloud.ibm.com/" target="_blank">
+                            <IbmCloud32 color="white"/>
+                        </a>
                     </li>
                     IBM Watson
                     <li className="navbar-ul-li">
-                        <Watson32 />
+                        <a href="https://www.ibm.com/mx-es/watson" target="_blank">
+                            <Watson32 color="white"/>
+                        </a>
                     </li>
                 </ul>
             </div>
