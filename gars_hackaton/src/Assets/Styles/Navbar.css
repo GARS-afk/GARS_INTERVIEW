@@ -9,6 +9,9 @@
 }
 
 .navbar--logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
     margin-left: 40px;
     transition: 1s;
@@ -21,6 +24,7 @@
 
 .navbar--logo-span {
     font-size: 1em;
+    margin-left: 10px;
 }
 
 .navbar--wrapper {
@@ -30,7 +34,7 @@
 
 .navbar-ul {
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     height: inherit;
     margin: 0;

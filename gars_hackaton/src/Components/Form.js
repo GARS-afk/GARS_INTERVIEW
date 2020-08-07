@@ -13,6 +13,11 @@ const Form = () => {
             [event.target.name]: event.target.value
         })
     }
+
+    const submitEvent = async () => {
+        //Aqui deben de crear el codigo para poder enviar la informacion a la base de datos
+    }
+
     return(
         <>
             <div className="wrapper-form">
