@@ -3,6 +3,8 @@ require('dotenv').config()
 const ibm_db = require('ibm_db')
 const app = express()
 
+app.use(express.json())
+
 app.get('/orders', (req, res) => {
     ibm_db.open(process.env.DB, ( err, con ) => {
         if( err ) {
@@ -31,22 +33,34 @@ app.get('/orders', (req, res) => {
 })
 
 app.post('/newOrder', ( req, res ) => {
+    const {
+        id_random,
+        enterprise_name,
+        address,
+        description,
+        email,
+        enterprise_key
+    } = req.body
+    
     ibm_db.open(process.env.DB, ( err, con ) => {
         if( err ) {
+            console.log('first error')
             res.status(500).json({
                 mensaje: 'Error al intentar concectar con la DB',
                 error: err
             })
         }
         else {
-            con.query(/* aqui deben colocar el query para insertar los datos que vienen del front*/'', ( err, data ) => {
+            con.query(`INSERT INTO JFV11323.ORDERS VALUES( ${id_random}, '${enterprise_name}', '${address}', '${description}', '${email}', '${status= 'pending'}', '${enterprise_key}' )`, ( err, data ) => {
                 if( err ) {
+                    console.log('error')
                     res.status(500).json({
                         mensaje: 'Error al ejecutar el query' ,
                         error: err
                     })
                 }
                 else {
+                    console.log('success')
                     res.status(200).json({
                         mensaje: 'nueva orden registrada'
                     })

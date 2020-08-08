@@ -12,7 +12,7 @@ const Home = () => {
     const [dataCard, setDataCard] = useState([])
 
     useEffect(() => {
-        fetch('/orders')
+        fetch('orders/')
         .then(res => res.json())
         .then(data => {
             setDataCard(data.data)

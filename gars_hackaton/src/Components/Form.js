@@ -10,8 +10,11 @@ const Form = () => {
         
         setDataForm({
             ...dataForm,
+            id_random:  Math.floor(Math.random() * 1000),
             [event.target.name]: event.target.value
         })
+
+        console.log(dataForm)
     }
 
     const submitEvent = async () => {
@@ -19,8 +22,26 @@ const Form = () => {
             Aqui deben de crear el codigo para poder enviar la informacion a la base de datos haciendo la validación
             de que ningun campo este vacio
         */
-    }
+       console.log(dataForm)
 
+       try {
+            let res = await fetch('newOrder/', {
+                method: 'POST',
+                body: JSON.stringify(dataForm),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+            alert('Sin problemas')
+            console.log(res)
+       }
+       catch(err){
+           console.log(err)
+       }
+       
+       
+    }
     return(
         <>
             <div className="wrapper-form">
@@ -48,7 +69,7 @@ const Form = () => {
                     <input 
                         type="text" 
                         onChange={handleChange} 
-                        name="enterpriseKey" 
+                        name="enterprise_key" 
                         placeholder="Enterprise key(RFC)"/>
                     <span>Description:</span>
                     <textarea 
