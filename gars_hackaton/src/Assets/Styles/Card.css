@@ -1,0 +1,56 @@
+.wrapper-card-info {
+    display: flex;
+    width: 30%;
+    box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.2);
+    background-color: #121619;
+    color: white;
+    height: auto;
+    border-radius:10px;
+    justify-content: center;
+    padding: 10px 0 20px 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-description {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.wrapper-button {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.button-accept, .button-reject {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 25px;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: 1s;
+}
+
+.button-accept:active, .button-reject:active {
+    transform: scale(0.8);
+}
+
+
+.button-cancel {
+    background-color: #da1e28;
+}
+
+.button-accept:hover {
+    background-color: #0043ce;
+}

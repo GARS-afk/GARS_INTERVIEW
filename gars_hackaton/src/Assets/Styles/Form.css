@@ -39,6 +39,11 @@
     transition: 1s;
 }
 
+.card-form > textarea {
+    resize: none;
+    height: 100px;
+}
+
 .card-form > input:hover, .card-form > textarea:hover {
     border: 1px solid #0072c3;
 }
@@ -61,6 +66,7 @@
     color: white;
     transition: 1s;
     cursor: pointer;
+    user-select: none;
 }
 
 .button-form:active {

@@ -1,0 +1,11 @@
+.wrapper-cards {
+    width: 50%;
+    height: auto;
+}
+
+.cards-container {
+    display: flex;
+    flex-shrink: 2;
+    flex-wrap: wrap;
+    gap: 10px;
+}
