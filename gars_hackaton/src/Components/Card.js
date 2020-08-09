@@ -10,11 +10,11 @@ const Card = (props) => {
             <div className="wrapper-card-info">
                 <h3>{info.ENTERPRISE_NAME}</h3>
                 <div className="card-description">
-    <span>{info.ADDRESS}</span>
-    <span>{info.EMAIL}</span>
-    <span>{info.ENTERPRISE_KEY}</span>
-    <span>{info.DESCRIPTION}</span>
-    <span>{info.STATUS}</span>
+                <span>{info.ADDRESS}</span>
+                <span>{info.EMAIL}</span>
+                <span>{info.ENTERPRISE_KEY}</span>
+                <span>{info.DESCRIPTION}</span>
+                <span>{info.STATUS}</span>
                 </div>
                 <div className="wrapper-button">
                     <div className="button-accept ">Accept</div>
