@@ -13,13 +13,11 @@ const Home = () => {
     const [dataForm, setDataForm] = useState({})
 
     const handleChange = (event) => {
-        
         setDataForm({
             ...dataForm,
-            id_random: Math.floor(Math.random() * 1000),
+            // id_random: Descomentar e ingresar el codigo que genere un nuemero aleatorio,
             [event.target.name]: event.target.value
         })
-        console.log(dataForm)
     }
 
     const getData = async () => {
