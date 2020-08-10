@@ -65,7 +65,6 @@ const Home = () => {
             fetch('/statusOrder', body)
             .then(res => res.json() )
             .then( data => {
-                console.log(data)
                 getData()
             })
         }
