@@ -18,7 +18,7 @@ const Home = () => {
             STATUS: 'accept'
         }
         try {
-            let res = await fetch('/statusOrder', {
+            await fetch('/statusOrder', {
                 method:'PUT',
                 body: JSON.stringify(data),
                 headers: {

@@ -59,7 +59,6 @@ app.post('/newOrder', ( req, res ) => {
 })
 
 app.put('/statusOrder', ( req, res ) =>{
-    console.log(req.body)
     ibm_db.open(process.env.DB, (err, con) => {
         if( err ) {
             res.status(500).json({
