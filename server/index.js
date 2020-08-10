@@ -20,12 +20,14 @@ app.get('/orders', (req, res) => {
                         mensaje:'Error al ejecutar el query',
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'Consulta realizada con exito',
                         data: data
                     })
+                    con.close()
                 }
             })
         }
@@ -41,17 +43,20 @@ app.post('/newOrder', ( req, res ) => {
             })
         }
         else {
+            // El id que sera insertado genera un numero random de 5 digitos
             con.query(/* aqui deben colocar el query para insertar los datos que vienen del front*/'', ( err, data ) => {
                 if( err ) {
                     res.status(500).json({
                         mensaje: 'Error al ejecutar el query' ,
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'nueva orden registrada'
                     })
+                    con.close();
                 }
             })
         }
@@ -74,12 +79,14 @@ app.put('/statusOrder', ( req, res ) =>{
                         mensaje:'Error ejecutar el query',
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'Status actualizado',
                         data: data
                     })
+                    con.close();
                 }
             })
         }
@@ -101,12 +108,14 @@ app.delete('/deleteOrder', (req, res) => {
                         mensaje:'Error ejecutar el query',
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'Opcion eliminada',
                         data: data
                     })
+                    con.close();
                 }
             })
         }

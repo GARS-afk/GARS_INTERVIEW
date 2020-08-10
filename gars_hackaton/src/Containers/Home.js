@@ -49,6 +49,32 @@ const Home = () => {
         })
     }
 
+    const rejectOrder = async ( orderId ) =>{
+        try{
+            let body = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({
+                    ID_ORDER: orderId,
+                    STATUS: 'reject'
+                })
+            }
+            fetch('/statusOrder', body)
+            .then(res => res.json() )
+            .then( data => {
+                console.log(data)
+                getData()
+            })
+        }
+        catch(error){
+            console.log(error)
+        }
+       
+    } 
+
     const submitEvent = async () => {
         /*
             Aqui deben de crear el codigo para poder enviar la informacion a la base de datos haciendo la validación
@@ -67,7 +93,7 @@ const Home = () => {
             <Header />
             <div className="wrapper-main-section">
                 <Form submitEvent={submitEvent} handleChange={handleChange}/>
-                <Cards dataCard={dataCard} acceptCard={acceptCard}/>
+                <Cards dataCard={dataCard} acceptCard={acceptCard} rejectOrder={rejectOrder}/>
             </div>
         </>
 
