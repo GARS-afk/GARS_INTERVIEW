@@ -17,7 +17,7 @@ const Card = (props) => {
                 <span>{info.STATUS}</span>
                 </div>
                 <div className="wrapper-button">
-                    <div className="button-accept ">Accept</div>
+                    <div className="button-accept" onClick={() => props.acceptCard(info.ID_ORDER)}>Accept</div>
                     <div className="button-reject button-cancel">Reject</div>
                 </div>
             </div>

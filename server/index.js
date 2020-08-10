@@ -57,6 +57,7 @@ app.post('/newOrder', ( req, res ) => {
 })
 
 app.put('/statusOrder', ( req, res ) =>{
+    console.log(req.body.STATUS)
     ibm_db.open(process.env.DB, (err, con) => {
         if( err ) {
             res.status(500).json({
@@ -65,7 +66,7 @@ app.put('/statusOrder', ( req, res ) =>{
             })
         }
         else {
-            con.query(`UPDATE JFV11323.ORDERS SET STATUS = '${ req.STATUS }' WHERE ID_ORDER = ${req.ID_ORDER}`, (err, data) => {
+            con.query(`UPDATE JFV11323.ORDERS SET STATUS = '${ req.body.STATUS }' WHERE ID_ORDER = ${req.body.ID_ORDER}`, (err, data) => {
                 if( err ) {
                     res.status(500).json({
                         mensaje:'Error ejecutar el query',

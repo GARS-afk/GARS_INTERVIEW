@@ -12,6 +12,20 @@ const Home = () => {
     const [dataCard, setDataCard] = useState([])
     const [dataForm, setDataForm] = useState({})
 
+    const acceptCard = async (id_random) => {
+        let data = {
+            ID_ORDER: id_random,
+            STATUS: 'accept'
+        }
+        let res = await fetch('/statusOrder', {
+            method:'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
     const handleChange = (event) => {
         setDataForm({
             ...dataForm,
@@ -46,7 +60,7 @@ const Home = () => {
             <Header />
             <div className="wrapper-main-section">
                 <Form submitEvent={submitEvent} handleChange={handleChange}/>
-                <Cards dataCard={dataCard} />
+                <Cards dataCard={dataCard} acceptCard={acceptCard}/>
             </div>
         </>
 

@@ -6,7 +6,8 @@ import Card from './Card'
 import '../Assets/Styles/Cards.css'
 
 const Cards = (props) => {
-    const {dataCard} = props 
+    const {dataCard} = props
+    console.log(props)
     return (
         <>
             <div className="wrapper-cards">
@@ -14,7 +15,7 @@ const Cards = (props) => {
                <div className="cards-container">
                    {
                       dataCard ? dataCard?.map(item => 
-                            <Card {...item} key={item.ID_ORDER}/>
+                            <Card {...item} key={item.ID_ORDER} acceptCard={props.acceptCard}/>
                         )
                         : <h1>No cards</h1>
                    }
