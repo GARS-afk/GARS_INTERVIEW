@@ -17,13 +17,20 @@ const Home = () => {
             ID_ORDER: id_random,
             STATUS: 'accept'
         }
-        let res = await fetch('/statusOrder', {
-            method:'PUT',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        try {
+            let res = await fetch('/statusOrder', {
+                method:'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+            getData()
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 
     const handleChange = (event) => {

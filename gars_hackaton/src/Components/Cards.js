@@ -7,7 +7,6 @@ import '../Assets/Styles/Cards.css'
 
 const Cards = (props) => {
     const {dataCard} = props
-    console.log(props)
     return (
         <>
             <div className="wrapper-cards">
