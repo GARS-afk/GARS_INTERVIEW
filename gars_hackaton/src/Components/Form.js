@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 //Estilos
 import '../Assets/Styles/Form.css'
 
 
 
 const Form = (props) => {
-
     return(
         <>
             <div className="wrapper-form">
@@ -32,7 +31,7 @@ const Form = (props) => {
                     <span>Enterprise key(RFC):</span>
                     <input 
                         type="text" 
-                        onChange={props.handleChange}
+                        onChange={props.handleChange} 
                         name="enterpriseKey" 
                         placeholder="Enterprise key(RFC)"/>
                     <span>Description:</span>

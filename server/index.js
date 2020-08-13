@@ -20,12 +20,14 @@ app.get('/orders', (req, res) => {
                         mensaje:'Error al ejecutar el query',
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'Consulta realizada con exito',
                         data: data
                     })
+                    con.close()
                 }
             })
         }
@@ -58,12 +60,14 @@ app.post('/newOrder', ( req, res ) => {
                         mensaje: 'Error al ejecutar el query' ,
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     console.log('success')
                     res.status(200).json({
                         mensaje: 'nueva orden registrada'
                     })
+                    con.close();
                 }
             })
         }
@@ -79,18 +83,20 @@ app.put('/statusOrder', ( req, res ) =>{
             })
         }
         else {
-            con.query(`UPDATE JFV11323.ORDERS SET STATUS = '${ req.STATUS }' WHERE ID_ORDER = ${req.ID_ORDER}`, (err, data) => {
+            con.query(`UPDATE JFV11323.ORDERS SET STATUS = '${ req.body.STATUS }' WHERE ID_ORDER = ${req.body.ID_ORDER}`, (err, data) => {
                 if( err ) {
                     res.status(500).json({
                         mensaje:'Error ejecutar el query',
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'Status actualizado',
                         data: data
                     })
+                    con.close();
                 }
             })
         }
@@ -112,12 +118,14 @@ app.delete('/deleteOrder', (req, res) => {
                         mensaje:'Error ejecutar el query',
                         error: err
                     })
+                    con.close();
                 }
                 else {
                     res.status(200).json({
                         mensaje: 'Opcion eliminada',
                         data: data
                     })
+                    con.close();
                 }
             })
         }

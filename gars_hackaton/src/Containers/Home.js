@@ -22,6 +22,27 @@ const Home = () => {
         console.log(dataForm)
     }
 
+    const acceptCard = async (id_random) => {
+        let data = {
+            ID_ORDER: id_random,
+            STATUS: 'accept'
+        }
+        try {
+            await fetch('/statusOrder', {
+                method:'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+            getData()
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+
     const getData = async () => {
         fetch('/orders')
         .then(res => res.json())
@@ -29,6 +50,31 @@ const Home = () => {
             setDataCard(data.data)
         })
     }
+
+    const rejectOrder = async ( orderId ) =>{
+        try{
+            let body = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({
+                    ID_ORDER: orderId,
+                    STATUS: 'reject'
+                })
+            }
+            fetch('/statusOrder', body)
+            .then(res => res.json() )
+            .then( data => {
+                getData()
+            })
+        }
+        catch(error){
+            console.log(error)
+        }
+       
+    } 
 
     const submitEvent = async () => {
         /*
@@ -65,7 +111,7 @@ const Home = () => {
             <Header />
             <div className="wrapper-main-section">
                 <Form submitEvent={submitEvent} handleChange={handleChange}/>
-                <Cards dataCard={dataCard} />
+                <Cards dataCard={dataCard} acceptCard={acceptCard} rejectOrder={rejectOrder}/>
             </div>
         </>
 
