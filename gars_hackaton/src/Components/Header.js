@@ -5,7 +5,7 @@ const Header = () => {
         <>
             <div className="wrapper-header">
                 <div className="description-header">
-                    <h1>Welcome to the hackaton</h1>
+                    <h1>Welcome to the hackathon</h1>
                     <h3>Instructions</h3>
                     <p>
                         Into the project, there are some challenges that you need to complete as a team

@@ -26,7 +26,7 @@ app.get('/orders', (req, res) => {
                     res.status(200).json({
                         mensaje: 'Consulta realizada con exito',
                         data: data
-                    })
+                    }) 
                     con.close()
                 }
             })
@@ -101,7 +101,7 @@ app.delete('/deleteOrder', (req, res) => {
             })
         }
         else {
-            con.query(`DELETE * FROM JFV11323 WHERE ID_ORDER = ${ req.ID_ORDER }`, (err, data) => {
+            con.query(`DELETE * FROM JFV11323 WHERE ID_ORDER = ${ req.body.ID_ORDER }`, (err, data) => {
                 if( err ) {
                     res.status(500).json({
                         mensaje:'Error ejecutar el query',
