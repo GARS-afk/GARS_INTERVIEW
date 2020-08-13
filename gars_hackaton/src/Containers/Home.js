@@ -37,15 +37,15 @@ const Home = () => {
         */ 
 
        try {
-            // let res = await fetch('newOrder/', {
-            //     method: 'POST',
-            //     body: JSON.stringify(dataForm),
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Access-Control-Allow-Origin': '*'
-            //     }
-            // })
-            // alert('Sin problemas')
+            let res = await fetch('newOrder/', {
+                method: 'POST',
+                body: JSON.stringify(dataForm),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
+            alert('Sin problemas')
             getData()
             setDataForm({})
        }
