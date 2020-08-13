@@ -1,0 +1,4 @@
+applications:
+- name: "microservicio-react-students"
+  instances: 1
+  memory: 64M
