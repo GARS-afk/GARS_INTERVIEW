@@ -1,0 +1,6 @@
+applications:
+    - name: "React Students"
+      instances: 1
+      memory: 64M
+      disk_quota: 510M
+      buildpack: staticfile_buildpack

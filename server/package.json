@@ -9,7 +9,10 @@
     "express": "^4.17.1",
     "ibm_db": "^2.7.0"
   },
-  "scripts" : {
+  "scripts": {
     "start": "node index.js"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": ""
 }
