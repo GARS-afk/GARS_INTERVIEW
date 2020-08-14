@@ -54,6 +54,7 @@ app.post('/newOrder', ( req, res ) => {
                 }
                 else {
                     res.status(200).json({
+                        
                         mensaje: 'nueva orden registrada'
                     })
                     con.close();
