@@ -1,126 +1,143 @@
-const express = require('express')
-require('dotenv').config()
-const ibm_db = require('ibm_db')
-const app = express()
+const express = require("express");
+require("dotenv").config();
+const ibm_db = require("ibm_db");
+const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
-app.get('/orders', (req, res) => {
-    ibm_db.open(process.env.DB, ( err, con ) => {
-        if( err ) {
+app.get("/orders", (req, res) => {
+  ibm_db.open(process.env.DB, (err, con) => {
+    if (err) {
+      res.status(500).json({
+        mensaje: "Error al intentar concectar con la DB",
+        error: err,
+      });
+    } else {
+      con.query("SELECT * FROM JFV11323.ORDERS", (err, data) => {
+        if (err) {
+          res.status(500).json({
+            mensaje: "Error al ejecutar el query",
+            error: err,
+          });
+          con.close();
+        } else {
+          res.status(200).json({
+            mensaje: "Consulta realizada con exito",
+            data: data,
+          });
+          con.close();
+        }
+      });
+    }
+  });
+});
+
+function Id() {
+  return Math.floor(100000 + Math.random() * 900000);
+}
+
+app.post("/newOrder", (req, res) => {
+  const id_random = Id(); //Id aleatorio 6 digitos numeros
+  ibm_db.open(process.env.DB, (err, con) => {
+    if (err) {
+      res.status(500).json({
+        mensaje: "Error al intentar concectar con la DB",
+        error: err,
+      });
+    } else {
+      const {
+        ENTERPRISE_NAME,
+        ADDRESS,
+        EMAIL,
+        DESCRIPTION,
+        enterpriseKey,
+      } = req.body;
+
+      console.log(ENTERPRISE_NAME, ADDRESS, EMAIL, DESCRIPTION, enterpriseKey);
+
+      con.query(
+        `INSERT INTO JFV11323.ORDERS (ID_ORDER, ENTERPRISE_NAME, ADDRESS, EMAIL, DESCRIPTION, ENTERPRISE_KEY) VALUES (${id_random}, '${ENTERPRISE_NAME}', '${ADDRESS}', '${EMAIL}','${DESCRIPTION}', '${enterpriseKey}')` /* aqui deben colocar el query para insertar los datos que vienen del front*/,
+        (err, data) => {
+          if (err) {
+            console.log(err);
             res.status(500).json({
-                mensaje: 'Error al intentar concectar con la DB',
-                error: err
-            })
+              mensaje: "Error al ejecutar el query",
+              error: err,
+            });
+            con.close();
+          } else {
+            res.status(200).json({
+              mensaje: "nueva orden registrada",
+              data: data,
+            });
+            con.close();
+          }
         }
-        else {
-            con.query('SELECT * FROM JFV11323.ORDERS', (err, data) => {
-                if( err ) {
-                    res.status(500).json({
-                        mensaje:'Error al ejecutar el query',
-                        error: err
-                    })
-                    con.close();
-                }
-                else {
-                    res.status(200).json({
-                        mensaje: 'Consulta realizada con exito',
-                        data: data
-                    }) 
-                    con.close()
-                }
-            })
-        }
-    })
-})
+      );
+    }
+  });
+});
 
-app.post('/newOrder', ( req, res ) => {
-     //let id_random: Descomentar e ingresar el codigo que genere un nuemero aleatorio,
-    ibm_db.open(process.env.DB, ( err, con ) => {
-        if( err ) {
+app.put("/statusOrder", (req, res) => {
+  ibm_db.open(process.env.DB, (err, con) => {
+    if (err) {
+      res.status(500).json({
+        mensaje: "Error Conectarse a la db",
+        error: err,
+      });
+    } else {
+      con.query(
+        `UPDATE JFV11323.ORDERS SET STATUS = '${req.body.STATUS}' WHERE ID_ORDER = ${req.body.ID_ORDER}`,
+        (err, data) => {
+          if (err) {
             res.status(500).json({
-                mensaje: 'Error al intentar concectar con la DB',
-                error: err
-            })
+              mensaje: "Error ejecutar el query",
+              error: err,
+            });
+            con.close();
+          } else {
+            res.status(200).json({
+              mensaje: "Status actualizado",
+              data: data,
+            });
+            con.close();
+          }
         }
-        else {
-            con.query(/* aqui deben colocar el query para insertar los datos que vienen del front*/'', ( err, data ) => {
-                if( err ) {
-                    res.status(500).json({
-                        mensaje: 'Error al ejecutar el query' ,
-                        error: err
-                    })
-                    con.close();
-                }
-                else {
-                    res.status(200).json({
-                        mensaje: 'nueva orden registrada'
-                    })
-                    con.close();
-                }
-            })
-        }
-    })
-})
+      );
+    }
+  });
+});
 
-app.put('/statusOrder', ( req, res ) =>{
-    ibm_db.open(process.env.DB, (err, con) => {
-        if( err ) {
+app.delete("/deleteOrder", (req, res) => {
+  ibm_db.open(process.env.DB, (err, con) => {
+    if (err) {
+      res.status(500).json({
+        mensaje: "Error Conectarse a la db",
+        error: err,
+      });
+    } else {
+      con.query(
+        `DELETE * FROM JFV11323 WHERE ID_ORDER = ${req.body.ID_ORDER}`,
+        (err, data) => {
+          if (err) {
             res.status(500).json({
-                mensaje:'Error Conectarse a la db',
-                error: err
-            })
+              mensaje: "Error ejecutar el query",
+              error: err,
+            });
+            con.close();
+          } else {
+            res.status(200).json({
+              mensaje: "Opcion eliminada",
+              data: data,
+            });
+            con.close();
+          }
         }
-        else {
-            con.query(`UPDATE JFV11323.ORDERS SET STATUS = '${ req.body.STATUS }' WHERE ID_ORDER = ${req.body.ID_ORDER}`, (err, data) => {
-                if( err ) {
-                    res.status(500).json({
-                        mensaje:'Error ejecutar el query',
-                        error: err
-                    })
-                    con.close();
-                }
-                else {
-                    res.status(200).json({
-                        mensaje: 'Status actualizado',
-                        data: data
-                    })
-                    con.close();
-                }
-            })
-        }
-    })
-})
+      );
+    }
+  });
+});
 
-app.delete('/deleteOrder', (req, res) => {
-    ibm_db.open(process.env.DB, (err, con) => {
-        if( err ) {
-            res.status(500).json({
-                mensaje:'Error Conectarse a la db',
-                error: err
-            })
-        }
-        else {
-            con.query(`DELETE * FROM JFV11323 WHERE ID_ORDER = ${ req.body.ID_ORDER }`, (err, data) => {
-                if( err ) {
-                    res.status(500).json({
-                        mensaje:'Error ejecutar el query',
-                        error: err
-                    })
-                    con.close();
-                }
-                else {
-                    res.status(200).json({
-                        mensaje: 'Opcion eliminada',
-                        data: data
-                    })
-                    con.close();
-                }
-            })
-        }
-    })
-})
-
-app.listen( process.env.PORT, () => {
-    console.log(`Example app listening at http://localhost:${ process.env.PORT }`)
-  })
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
+});

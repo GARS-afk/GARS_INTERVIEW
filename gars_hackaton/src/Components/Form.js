@@ -1,42 +1,43 @@
-import React from 'react'
+import React from "react";
 //Estilos
-import '../Assets/Styles/Form.css'
-
-
+import "../Assets/Styles/Form.css";
 
 const Form = (props) => {
-    return(
-        <>
-            <div className="wrapper-form">
-                <h1>Orders Form</h1>
-                <form className="card-form">
-                    <span>Enterprise Name:</span>
-                    <input 
-                        type="text" 
-                        onChange={props.handleChange} 
-                        name="enterprise_name" 
-                        placeholder="Enterprise Name"/>
-                    <span>Address:</span>
-                    <input 
-                        type="text" 
-                        onChange={props.handleChange} 
-                        name="address" 
-                        placeholder="Address"/>
-                    <span>Email:</span>
-                    <input 
-                        type="email" 
-                        onChange={props.handleChange} 
-                        name="email" 
-                        placeholder="Email"/>
-                    <span>Description:</span>
-                    <textarea 
-                        onChange={props.handleChange} 
-                        name="description"/>
-                    <div  className="button-form" onClick={props.submitEvent}>Submit</div>
-                </form>
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div className="wrapper-form">
+        <h1>Orders Form</h1>
+        <form className="card-form">
+          <span>Enterprise Name:</span>
+          <input
+            type="text"
+            onChange={props.handleChange}
+            name="enterprise_name"
+            placeholder="Enterprise Name"
+          />
+          <span>Address:</span>
+          <input
+            type="text"
+            onChange={props.handleChange}
+            name="address"
+            placeholder="Address"
+          />
+          <span>Email:</span>
+          <input
+            type="email"
+            onChange={props.handleChange}
+            name="email"
+            placeholder="Email"
+          />
+          <span>Description:</span>
+          <textarea onChange={props.handleChange} name="description" />
+          <div className="button-form" onClick={props.submitEvent}>
+            Submit
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
 
-export default Form
+export default Form;
