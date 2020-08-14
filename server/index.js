@@ -35,7 +35,7 @@ app.get('/orders', (req, res) => {
 })
 
 app.post('/newOrder', ( req, res ) => {
-     //let id_random: Descomentar e ingresar el codigo que genere un nuemero aleatorio,
+    let id_random = Math.random() * 100000
     ibm_db.open(process.env.DB, ( err, con ) => {
         if( err ) {
             res.status(500).json({
@@ -44,7 +44,10 @@ app.post('/newOrder', ( req, res ) => {
             })
         }
         else {
-            con.query(/* aqui deben colocar el query para insertar los datos que vienen del front*/'', ( err, data ) => {
+            console.log(req.body)
+            let query = `INSERT INTO JFV11323.ORDERS (ID_ORDER, ENTERPRISE_NAME, ADDRESS, DESCRIPTION, EMAIL, STATUS, ENTERPRISE_KEY) 
+                        VALUES (${id_random}, '${req.body.enterprise_name}', '${req.body.address}', '${req.body.description}', '${req.body.email}', 'accept', '${req.body.enterpriseKey}')`
+            con.query(query, ( err, data ) => {
                 if( err ) {
                     res.status(500).json({
                         mensaje: 'Error al ejecutar el query' ,
