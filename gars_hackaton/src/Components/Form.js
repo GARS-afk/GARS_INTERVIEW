@@ -28,12 +28,6 @@ const Form = (props) => {
                         onChange={props.handleChange} 
                         name="email" 
                         placeholder="Email"/>
-                    <span>Enterprise key(RFC):</span>
-                    <input 
-                        type="text" 
-                        onChange={props.handleChange} 
-                        name="enterpriseKey" 
-                        placeholder="Enterprise key(RFC)"/>
                     <span>Description:</span>
                     <textarea 
                         onChange={props.handleChange} 

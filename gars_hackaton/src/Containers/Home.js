@@ -36,7 +36,7 @@ const Home = () => {
     const handleChange = (event) => {
         setDataForm({
             ...dataForm,
-            // id_random: Descomentar e ingresar el codigo que genere un nuemero aleatorio,
+            //enterpriseKey: Descomentar e ingresar el codigo que genere el enterpriseKey con los primeros tres caracteres de la empresa, y seis numeros aleatorios
             [event.target.name]: event.target.value
         })
     }

@@ -6,8 +6,9 @@ Bienvenidos al Hackathon de Gars. En este repositorio en contraran el reto de lo
 
 2. Cree y coloque el query necesario para crear una nueva orden en la ruta `/newOrder`
 
-3. En esta misma ruta valide el campo Email y la Clave de la empresa
+3. En el archivo index.js dentro la carpeta gars_hackathon > src > Containers en el archivo Home.js generar la clave de la empresa con los tres primeros caracteres del nombre de la empresa y seis numeros aleatorios
 4. En el archivo index.js dentro la carpeta gars_hackathon > src > Containers en el archivo Home.js en el cual hay unafuncion llamada submitEvent en el la cual dentro de esta deberar de crear la funcionalidad para que se pueda insertar los registros en la base de datos, esta funcionalidad debera de enviar los datos a la ruta /newOrder 
+
 
 ## Comenzando 🚀
 

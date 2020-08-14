@@ -35,6 +35,7 @@ app.get('/orders', (req, res) => {
 })
 
 app.post('/newOrder', ( req, res ) => {
+     //let id_random: Descomentar e ingresar el codigo que genere un nuemero aleatorio,
     ibm_db.open(process.env.DB, ( err, con ) => {
         if( err ) {
             res.status(500).json({
@@ -43,7 +44,6 @@ app.post('/newOrder', ( req, res ) => {
             })
         }
         else {
-            // El id que sera insertado genera un numero random de 5 digitos
             con.query(/* aqui deben colocar el query para insertar los datos que vienen del front*/'', ( err, data ) => {
                 if( err ) {
                     res.status(500).json({
@@ -101,7 +101,7 @@ app.delete('/deleteOrder', (req, res) => {
             })
         }
         else {
-            con.query(`DELETE * FROM JFV11323 WHERE ID_ORDER = ${ req.ID_ORDER }`, (err, data) => {
+            con.query(`DELETE * FROM JFV11323 WHERE ID_ORDER = ${ req.body.ID_ORDER }`, (err, data) => {
                 if( err ) {
                     res.status(500).json({
                         mensaje:'Error ejecutar el query',
