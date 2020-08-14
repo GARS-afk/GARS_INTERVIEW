@@ -26,7 +26,7 @@ app.get('/orders', (req, res) => {
                     res.status(200).json({
                         mensaje: 'Consulta realizada con exito',
                         data: data
-                    })
+                    }) 
                     con.close()
                 }
             })
