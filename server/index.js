@@ -8,8 +8,6 @@ const ibm_variable_temp = 'DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-dal09-14.s
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(cors())
-app.options('*', cors())
 
 app.post('/newUser', (req, res) => {
     console.log(req.body)
@@ -19,7 +17,7 @@ app.post('/newUser', (req, res) => {
         nombre,
         apellidos,
         username,
-        password 
+        password = password.lenght > 8 ? password : res.status(500).json('La contraseña debe de ser de 8 digitos')
     } = req.body 
 
     ibm_db.open(ibm_variable_temp, (err, conn) => {
