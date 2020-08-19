@@ -3,7 +3,31 @@ require('dotenv').config()
 const ibm_db = require('ibm_db')
 const app = express()
 
+const ibm_variable_temp = 'DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-dal09-14.services.dal.bluemix.net;PORT=50001;PROTOCOL=TCPIP;UID=qks86401;PWD=0j2z3xk+rxg9hn5x;Security=SSL;'
+
 app.use(express.json())
+
+app.post('/newUser', (req, res) => {
+    console.log(req.body)
+    const {
+        id_random = Math.floor(Math.random() * 3600000),
+        nombre,
+        apellidos,
+        username,
+        password 
+    } = req.body 
+
+    // ibm_db.open(ibm_variable_temp, (err, conn) => {
+    //     if (err) return res.status(500).json({message: 'Error in connection'})
+
+    //     conn.query(`INSERT INTO QKS86401.USERS (id_random, nombre, apellidos, username, password) VALUES ('${id_random}', '${nombre}', '${apellidos}', '${username}', '${password}');`, (err, data) => {
+    //         err 
+    //         ? res.json({message: `Error in connection ${err}`})
+    //         : res.json({message: 'New user inserted'})
+    //         ibm_db.close()
+    //     })
+    // })
+})
 
 app.get('/orders', (req, res) => {
     ibm_db.open(process.env.DB, ( err, con ) => {
