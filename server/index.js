@@ -28,7 +28,7 @@ app.post('/newUser', (req, res) => {
         nombre,
         apellidos,
         username,
-        password = password.lenght > 8 ? password : res.status(500).json('La contraseña debe de ser de 8 digitos')
+        password = password.lenght > 8 ? password : res.status(500).json({message: 'La contraseña debe de ser mayor a 8 caracteres'})
     } = req.body 
 
     ibm_db.open(ibm_variable_temp, (err, conn) => {
